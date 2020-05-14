@@ -48,19 +48,30 @@ class App extends React.Component {
       },
     }
 
-    HandleDeleteClicked = () => {
-      console.log(this)
-      this.setState({
+
+    HandleDeleteClicked = (id) => {
+     
+          const {[id]:omit, ...rest} = this.state.allCards; 
+     
+           let arrayList = [];
+           for (let i = 0; i < this.state.lists.length; i++) {
+             let list = this.state.lists[i]
+            const filteredcardIds = this.state.lists[i].cardIds.filter(card => card !== id)
+            console.log(filteredcardIds)
+
+            const updatedList = {...list, cardIds: filteredcardIds}
+            arrayList.push(updatedList)
         //Loop through lists.cardIds to delete cardId
         //Loop through allCards to delete card.  
-      })
+      }
+      this.setState({lists: arrayList, allCards: rest})
     }
 
     render() {
       
     // console.log(this.state);
     let holdList = this.state.lists
-    console.log(holdList);
+    // console.log(holdList);
     let arrayList = [];
     for (let i = 0; i < this.state.lists.length; i++) {
       let myList = [];

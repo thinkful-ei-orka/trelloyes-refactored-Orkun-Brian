@@ -4,9 +4,9 @@ import './List.css';
 
 
 export default function List(props) {
-   console.log(props);
+  //  console.log(props);
     const listOfCards = props.cards.map(card => (
-      <Card handleClick={props.handleClick} key={card.id} title={card.title} content={card.content} />
+      <Card handleClick={props.handleClick} key={card.id} cardId={card.id} title={card.title} content={card.content} />
     ));
     
     return (
