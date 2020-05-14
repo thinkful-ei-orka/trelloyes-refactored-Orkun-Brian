@@ -1,8 +1,7 @@
-import React from 'react';
-
-import STORE from './store.js';
+import React, { Children } from 'react';
 import List from './List';
 import './App.css';
+
 
 class App extends React.Component {
     //for each list in store.list we need to generate a 
@@ -48,26 +47,33 @@ class App extends React.Component {
         'm': { id: 'm', title: 'Thirteenth card', content: 'lorem ipsum' },
       },
     }
-    
-  
+
+    HandleDeleteClicked = () => {
+      console.log(this)
+
+    }
+
+    render() {
+      
     // console.log(this.state);
-     holdList = this.state.lists
-    // console.log(holdList);
-     arrayList = [];
-    for ( i = 0; i < this.state.lists.length; i++) {
-       myList = [];
-       list = this.state.lists[i]
-      for ( e = 0; e < list.cardIds.length; e++){
-           cardId = list.cardIds[e];
+    let holdList = this.state.lists
+    console.log(holdList);
+    let arrayList = [];
+    for (let i = 0; i < this.state.lists.length; i++) {
+      let myList = [];
+      let list = this.state.lists[i]
+      for (let e = 0; e < list.cardIds.length; e++){
+          let cardId = list.cardIds[e];
           myList.push(this.state.allCards[cardId]);
       }
-      arrayList.push(<List key={list.id} header = {list.header} cards = {myList} />)
+      arrayList.push(<List handleClick={this.HandleDeleteClicked} key={list.id} header = {list.header} cards = {myList} />)
     }
-  
 
 
 
     return (
+      <>
+      
       <main className="App">
         <header className="App-header">
           <h1>Trelloyes!</h1>
@@ -77,13 +83,14 @@ class App extends React.Component {
         </div>
 
       </main>
+      </>
     );
 
-  
-  
-  
+      
+    }
+
   };
 
-
+export default App;
 
 
