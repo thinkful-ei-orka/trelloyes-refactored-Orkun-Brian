@@ -50,7 +50,10 @@ class App extends React.Component {
 
     HandleDeleteClicked = () => {
       console.log(this)
-
+      this.setState({
+        //Loop through lists.cardIds to delete cardId
+        //Loop through allCards to delete card.  
+      })
     }
 
     render() {
