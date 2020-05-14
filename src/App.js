@@ -67,6 +67,28 @@ class App extends React.Component {
       this.setState({lists: arrayList, allCards: rest})
     }
 
+    handleAddClicked = () => {
+      
+      let randomList = Math.floor(Math.random()* Math.floor(4))+1;
+      console.log(randomList)
+      const id = Math.random().toString(36).substring(2, 4)
+      + Math.random().toString(36).substring(2, 4); 
+      console.log(id)
+      let obj= {
+      id,
+      title: `Random Card ${id}`,
+      content: 'lorem ipsum',
+    }
+      this.createNewCard(randomList + '', obj)
+    
+    }
+
+    createNewCard = (listId, newCard) => {
+      const listItem = this.state.lists.find((list) => list.id === listId);
+      listItem.cardIds.push(newCard.id)
+      this.setState ({allCards: {...this.state.allCards, [newCard.id] : newCard}}) 
+    }
+
     render() {
       
     // console.log(this.state);
@@ -92,6 +114,7 @@ class App extends React.Component {
         <header className="App-header">
           <h1>Trelloyes!</h1>
         </header>
+        <button onClick={this.handleAddClicked}>Add Random Card</button>
         <div className="App-list">
           {arrayList}
         </div>
